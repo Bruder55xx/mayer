@@ -4,6 +4,11 @@ from colorama import init, Fore, Style
 import time
 import datetime
 import random
+from keep_alive import keep_alive
+import websockets
+from loguru import logger
+from flask import Flask
+
 init(autoreset=True)
 
 # Define color variables
@@ -14,7 +19,15 @@ BLUE = Fore.BLUE + Style.BRIGHT
 MAGENTA = Fore.MAGENTA + Style.BRIGHT
 CYAN = Fore.CYAN + Style.BRIGHT
 WHITE = Fore.WHITE + Style.BRIGHT
- 
+ # Flask application
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    return "Hello World!"
+
+def run_flask():
+    app.run(debug=True)
 
 def get_headers(access_token=None):
     headers = {
@@ -277,6 +290,7 @@ def print_welcome_message():
 
 def main():
     print_welcome_message()
+    keep_alive()
     mode = 'n'
     if mode != 'Y':
         print(Fore.YELLOW + f"Select Hold Coin Mode: ")
