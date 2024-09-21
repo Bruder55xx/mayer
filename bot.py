@@ -9,7 +9,19 @@ from datetime import datetime
 from src.headers import headers
 from src.auth import get_token
 from src.utils import log, log_line, countdown_timer, _banner, _clear, mrh, hju, kng, pth, bru, htm, reset
+from keep_alive import keep_alive
+import websockets
+from loguru import logger
+from flask import Flask
+# Flask application
+app = Flask(__name__)
 
+@app.route('/')
+def index():
+    return "Hello World!"
+
+def run_flask():
+    app.run(debug=True)
 init(autoreset=True)
 
 class Major:
@@ -368,6 +380,7 @@ class Major:
 if __name__ == "__main__":
     try:
         major = Major()
+        keep_alive()
         major.main()
     except KeyboardInterrupt:
         sys.exit()
