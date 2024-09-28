@@ -1,5 +1,5 @@
 {
-  "use_proxies": false,
+  "use_proxies": true,
   "auto_complete_task": true,
   "auto_play_game": true,
   "account_delay": 3,
